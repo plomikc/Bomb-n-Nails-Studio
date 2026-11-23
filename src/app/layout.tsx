@@ -3,6 +3,7 @@ import { Nunito, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/config/site";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 
 const nunito = Nunito({
   variable: "--font-sans",
@@ -29,6 +30,7 @@ export default function RootLayout({
       <body className="min-h-screen bg-background text-foreground font-sans antialiased">
         {children}
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
