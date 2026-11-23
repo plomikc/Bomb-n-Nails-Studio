@@ -1,0 +1,108 @@
+@property --glow-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.card {
+  --glow-pink-light: #f9c4d2;
+  --glow-pink-dark: #b18597;
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 4 / 5;
+  border-radius: 20px;
+  isolation: isolate;
+  color: #382b22;
+}
+
+.inner {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  width: 100%;
+  border-radius: 20px;
+  background: #fff0f0;
+  border: 3px solid var(--glow-pink-dark);
+  padding: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(177, 133, 151, 0.18);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 14px;
+  display: block;
+}
+
+.glow {
+  position: absolute;
+  inset: -6px;
+  z-index: 0;
+  border-radius: 24px;
+  background: conic-gradient(
+    from var(--glow-angle),
+    var(--glow-pink-light),
+    var(--glow-pink-dark),
+    var(--glow-pink-light),
+    var(--glow-pink-dark),
+    var(--glow-pink-light)
+  );
+  filter: blur(18px);
+  opacity: 0.55;
+  transition: opacity 200ms ease, filter 200ms ease, transform 200ms ease;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  z-index: 1;
+  border-radius: 22px;
+  padding: 3px;
+  background: conic-gradient(
+    from var(--glow-angle),
+    var(--glow-pink-light),
+    var(--glow-pink-dark),
+    var(--glow-pink-light),
+    var(--glow-pink-dark),
+    var(--glow-pink-light)
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+@supports (background: conic-gradient(from 0deg, red, blue)) {
+  .glow,
+  .card::before {
+    animation: hero-glow-spin 6s linear infinite;
+  }
+}
+
+.card:hover .glow {
+  opacity: 0.85;
+  filter: blur(22px);
+  transform: scale(1.02);
+}
+
+@keyframes hero-glow-spin {
+  to {
+    --glow-angle: 360deg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow,
+  .card::before {
+    animation: none !important;
+    transition: none !important;
+  }
+  .card:hover .glow {
+    transform: none;
+  }
+}

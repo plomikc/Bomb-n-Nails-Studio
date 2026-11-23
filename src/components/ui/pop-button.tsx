@@ -7,7 +7,7 @@ export function PopButton({ className, children = "Learn More", ...props }: PopB
   return (
     <button
       className={cn(
-        "group relative inline-flex items-center justify-center font-semibold uppercase text-[#382b22] dark:text-[#382b22]",
+        "group relative inline-flex items-center justify-center font-bold uppercase text-[#382b22] dark:text-[#382b22]",
         "px-8 py-5 rounded-xl bg-[#fff0f0] border-2 border-[#b18597]",
         "transition-all duration-150 ease-[cubic-bezier(0,0,0.58,1)]",
         "shadow-[0_12px_0_-2px_#f9c4d2,0_12px_0_0_#b18597,0_22px_0_0_#ffe3e2]",

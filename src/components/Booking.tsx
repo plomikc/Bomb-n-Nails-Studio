@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent } from "react";
+import { PopButton } from "@/components/ui/pop-button";
 import { siteConfig } from "@/config/site";
 
 type BookingProps = {
@@ -93,12 +94,9 @@ export default function Booking({ selectedPackage, onPackageChange }: BookingPro
               />
             </div>
           </div>
-          <button
-            type="submit"
-            className="mt-6 w-full rounded-full bg-mauve px-6 py-3 text-base font-semibold text-white transition hover:opacity-90"
-          >
+          <PopButton type="submit" className="mt-8 mb-2 w-full">
             Enviar solicitud
-          </button>
+          </PopButton>
           <p className="mt-3 text-center text-sm text-muted-foreground">
             Formulario de ejemplo, sin funcionalidad por ahora.
           </p>

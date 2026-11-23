@@ -1,5 +1,6 @@
 "use client";
 
+import PackageCard from "@/components/PackageCard";
 import { siteConfig } from "@/config/site";
 
 type PackagesProps = {
@@ -24,34 +25,24 @@ export default function Packages({ onSelectPackage }: PackagesProps) {
             Elige el servicio ideal para consentir tus manos.
           </p>
         </div>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          {siteConfig.packages.map((pkg) => (
-            <article
-              key={pkg.id}
-              className="flex h-full flex-col rounded-3xl border border-border/60 bg-white/80 p-6 shadow-sm"
-            >
-              <div className="mb-4">
-                <h3 className="text-2xl font-semibold">{pkg.name}</h3>
-                <p className="mt-1 text-sm font-medium text-mauve">{pkg.duration}</p>
-              </div>
-              <ul className="mb-6 flex-1 space-y-2 text-sm text-foreground sm:text-base">
-                {pkg.includes.map((item) => (
-                  <li key={item} className="flex items-start gap-2">
-                    <span className="mt-1 h-2 w-2 rounded-full bg-pink" aria-hidden="true" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <p className="mb-5 text-2xl font-semibold text-foreground">{pkg.price}</p>
-              <button
-                type="button"
-                onClick={() => handleSelect(pkg.id)}
-                className="mt-auto inline-flex w-full items-center justify-center rounded-full bg-mauve px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90 sm:text-base"
-              >
-                {pkg.ctaLabel}
-              </button>
-            </article>
-          ))}
+        <div className="bn-packages">
+          <div className="bn-grid">
+            {siteConfig.packages.map((pkg) => (
+              <PackageCard
+                key={pkg.id}
+                pkg={{
+                  id: pkg.id,
+                  name: pkg.name,
+                  description: pkg.description,
+                  includes: [...pkg.includes],
+                  duration: pkg.duration,
+                  price: pkg.price,
+                  image: pkg.image,
+                }}
+                onSelect={handleSelect}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>
